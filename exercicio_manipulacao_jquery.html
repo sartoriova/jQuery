@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página inicial</title>
+    <style>
+        button {
+            width: 150px;
+            margin: auto;
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+</head>
+
+<body>
+    <div class="columns">
+        <div class="column is-4 is-offset-4">
+            <div class="has-text-centered my-6">
+                <button class="button is-success add">Adicionar</button>
+                <button class="button is-danger rem">Remover</button>
+            </div>
+
+            <table class="table is-fullwidth is-striped is-hoverable">
+                <thead>
+                    <tr class="has-text-centered">
+                        <th>Parte 1</th>
+                        <th>Parte 2</th>
+                        <th>Parte 3</th>
+                    </tr>
+                </thead>
+                <tbody class="has-text-centered tbody">
+                    <tr class="has-text-success">
+                        <td>Aula 1 - Manhã</td>
+                        <td>Aula 1 - Tarde</td>
+                        <td>Aula 1 - Noite</td>
+                    </tr>
+                    <tr class="has-text-danger">
+                        <td>Aula 2 - Manhã</td>
+                        <td>Aula 2 - Tarde</td>
+                        <td>Aula 2 - Noite</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            var qtd = 2
+
+            $(".rem").click(function () {
+                qtd = qtd - 1
+
+                let ultimo_tr = $("tr").last()
+                ultimo_tr.remove()
+            })
+
+            $(".add").click(function () {
+                qtd = qtd + 1
+
+                let tbody = $(".tbody")
+                let tr = $("<tr>")
+                let td_manha = $("<td>")
+                let td_tarde = $("<td>")
+                let td_noite = $("<td>")
+
+                td_manha.text(`Aula ${qtd} - Manhã`)
+                td_tarde.text(`Aula ${qtd} - Tarde`)
+                td_noite.text(`Aula ${qtd} - Noite`)
+
+                if (qtd % 2 == 0) {
+                    tr.addClass("has-text-danger")
+                } else {
+                    tr.addClass("has-text-success")
+                }
+
+
+                tr.append(td_manha)
+                tr.append(td_tarde)
+                tr.append(td_noite)
+
+                tbody.append(tr)
+            })
+        })
+    </script>
+
+</body>
+
+</html>
